@@ -10,7 +10,7 @@ export default function App() {
 
   const addGoalHandler = goalTitle => {
     // setCourseGoals([...courseGoals, enteredGoal])
-    setCourseGoals(currentGoals => [...currentGoals, { key: Math.random().toString(), value: goalTitle}]);
+    setCourseGoals(currentGoals => [...currentGoals, { id: Math.random().toString(), value: goalTitle}]);
     // the array course goals is an array of objects with each object habing a key and a value
     setIsAddMode(false);
   };
@@ -31,7 +31,7 @@ export default function App() {
       <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} onCancel={cancelGoalHandler} />
       <FlatList
         data={courseGoals}
-        renderItem={itemData => <GoalItem id={itemData.item.id} onDelete={removeGoalHandler} title={itemData.item.value} />}
+        renderItem={itemData => <GoalItem key={id} id={itemData.item.id} onDelete={removeGoalHandler} title={itemData.item.value} />}
       />
     </View>
   );
